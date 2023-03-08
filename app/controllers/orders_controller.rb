@@ -10,13 +10,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
     @order = current_user.orders.build(order_params)
-    unless @order.save
-      raise ActiveRecord::Rollback
-    end
+    @order.save
     @order.update_total_quantity
-  end  
     # La méthode update_total_quantity est définie dans le modèle Order pour refléter le montant total des commandes passées.
     redirect_to orders_path
   end

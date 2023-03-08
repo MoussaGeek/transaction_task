@@ -10,14 +10,14 @@ class SessionsController < ApplicationController
       log_in(user)
       redirect_to items_path
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = 'échec de la connexion'
       render :new
     end
   end
 
   def destroy
     session.delete(:user_id)
-    flash[:notice] = 'ログアウトしました'
+    flash[:notice] = 'déconnecté'
     redirect_to new_session_path
   end
 end
